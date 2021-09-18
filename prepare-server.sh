@@ -13,7 +13,7 @@ sudo apt-get install \
     ca-certificates \
     curl \
     gnupg \
-    lsb-release
+    lsb-release -y
 
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
 
@@ -21,12 +21,12 @@ echo \
   "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
   $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 
-sudo apt-get update
-sudo apt-get install docker-ce docker-ce-cli containerd.io
+sudo apt-get update -y
+sudo apt-get install docker-ce docker-ce-cli containerd.io -y
 
 
 # Install ufw firewall
-sudo apt install ufw
+sudo apt install ufw -y
 
 #################### UFW configuration ####################
 #deny all incoming connections and then open only ones reqired
@@ -48,7 +48,7 @@ sudo ufw enable
 #################### End of UFW configuration ####################
 
 #################### Nginx configuration ####################
-sudo apt install nginx
+sudo apt install nginx -y
 #allow Nginx HTTP and Nginx HTTPS
 sudo ufw allow 'Nginx Full'
 sudo systemctl start nginx
@@ -59,7 +59,7 @@ sudo systemctl reload nginx
 #sudo systemctl enable nginx
 
 
-Creating new server block
+# Creating new server block
 cat > /etc/nginx/sites-available/$initial_server << EOL
 server {
         listen 80;
@@ -78,11 +78,11 @@ sudo ln -s /etc/nginx/sites-available/$initial_server /etc/nginx/sites-enabled/
 
 
 # Install git 
-sudo apt-get install git
+sudo apt-get install git -y
 
 # Install NodeJS
-sudo apt install nodejs
-sudo apt install npm
-sudo apt install yarn
+sudo apt install nodejs -y
+sudo apt install npm -y
+sudo apt install yarn -y
 
 
